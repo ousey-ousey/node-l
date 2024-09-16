@@ -6,7 +6,6 @@ var moment = require("moment");
 router.get("", (req, res) => {
   res.render("user/add");
 });
-ge;
 // POST Requst
 router.post("", (req, res) => {
   User.create(req.body)
