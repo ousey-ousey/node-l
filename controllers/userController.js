@@ -1,5 +1,8 @@
 const User = require("../models/customerSchema");
 var moment = require("moment");
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+app.use(methodOverride("_method"));
 
 const user_index_get = (req, res) => {
   // result ==> array of objects
