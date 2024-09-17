@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
   console.log("--------------------------------------------");
   User.find()
     .then((result) => {
-      res.render("index", { arr: result, moment: moment });
+      res.render("home", { arr: result, moment: moment });
     })
     .catch((err) => {
       console.log(err);
