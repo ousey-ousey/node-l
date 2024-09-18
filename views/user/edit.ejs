@@ -6,7 +6,7 @@
       rel="stylesheet"
       href="../bootstrap-icons-1.10.5/font/bootstrap-icons.min.css"
     />
-    <link rel="shortcut icon" href="../img/yousef.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/yousef.jpg" type="image/x-icon" />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,8 +20,7 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../css/dark-light.css">
-
+    <link rel="stylesheet" href="../css/dark-light.css" />
 
     <!-- Custom styles for this template -->
     <link href="../css/sidebars.css" rel="stylesheet" />
@@ -33,37 +32,36 @@
     <main class="d-flex flex-nowrap">
       <%- include('../Components/sidebar.ejs', {currentPage: "edit"}) %>
 
-
       <section class="w-100">
         <%- include('../Components/navbar.ejs') %>
 
-
-        <nav class="px-2 mt-4 d-flex flex-wrap justify-content-between" aria-label="breadcrumb">
+        <nav
+          class="px-2 mt-4 d-flex flex-wrap justify-content-between"
+          aria-label="breadcrumb"
+        >
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><%= obj.fireName %><%= obj.lastName %></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <%= obj.fireName %><%= obj.lastName %>
+            </li>
           </ol>
 
-
-          <p class="me-md-5"> <span class="fw-medium fs-6">Id :</span> <%= obj._id %></p>
+          <p class="me-md-5">
+            <span class="fw-medium fs-6">Id :</span> <%= obj._id %>
+          </p>
         </nav>
 
-
-
-
-
-
-
-
-       <form class="mx-0 row gx-3 gy-4 mt-2" action="/edit/<%= obj._id %>?_method=PUT" method="post">
-
+        <form
+          class="mx-0 row gx-3 gy-4 mt-2"
+          action="/edit/<%= obj._id %>?_method=PUT"
+          method="post"
+        >
           <div class="col-md-6">
             <label for="inputfirstName4" class="form-label">First Name:</label>
             <input
               value="<%= obj.fireName %>"
               type="text"
               name="fireName"
-
               class="form-control"
               id="inputfirstName4"
             />
@@ -74,8 +72,8 @@
               value="<%= obj.lastName %>"
               type="text"
               class="form-control"
-              id="inputlastName4"            name="lastName"
-
+              id="inputlastName4"
+              name="lastName"
             />
           </div>
 
@@ -85,8 +83,8 @@
               value="<%= obj.email %>"
               type="email"
               class="form-control"
-              id="inputemail4"            name="email"
-
+              id="inputemail4"
+              name="email"
             />
           </div>
           <div class="col-md-6">
@@ -95,8 +93,8 @@
               value="<%= obj.phoneNumber %>"
               type="number"
               class="form-control"
-              id="inputtele4"            name="phoneNumber"
-
+              id="inputtele4"
+              name="phoneNumber"
             />
           </div>
 
@@ -107,8 +105,8 @@
                 value="<%= obj.age %>"
                 type="number"
                 class="form-control"
-                id="inputage4"              name="age"
-
+                id="inputage4"
+                name="age"
               />
             </div>
           </div>
@@ -117,43 +115,53 @@
             <div class="col-md-6">
               <label for="inputCountry" class="form-label">Country:</label>
               <select name="country" id="inputCountry" class="form-select">
-                <option name="country" selected hidden disabled><%= obj.country %></option>
-                <% const countries = [
-                "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
-                "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas",
-                "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin",
-                "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
-                "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon",
-                "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia",
-                "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus",
-                "Czechia (Czech Republic)", "Democratic Republic of the Congo", "Denmark", "Djibouti",
-                "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea",
-                "Eritrea", "Estonia", "Eswatini (fmr. Swaziland)", "Ethiopia", "Fiji", "Finland",
-                "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada",
-                "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary",
-                "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "palastiene", "Italy", "Jamaica",
-                "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan",
-                "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania",
-                "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta",
-                "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova",
-                "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (Burma)",
-                "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger",
-                "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau",
-                "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
-                "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
-                "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe",
-                "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
-                "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
-                "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
-                "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga",
-                "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda",
-                "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America",
-                "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
-                "Yemen", "Zambia", "Zimbabwe"
-                ]
-                %>
-                <% countries.forEach(function(country) { %>
-                  <option  value="<%= country %>"><%= country %></option>
+                <option name="country" selected hidden disabled>
+                  <%= obj.country %>
+                </option>
+                <% const countries = [ "Afghanistan", "Albania", "Algeria",
+                "Andorra", "Angola", "Antigua and Barbuda", "Argentina",
+                "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas",
+                "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium",
+                "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and
+                Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria",
+                "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon",
+                "Canada", "Central African Republic", "Chad", "Chile", "China",
+                "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa
+                Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)",
+                "Democratic Republic of the Congo", "Denmark", "Djibouti",
+                "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El
+                Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini
+                (fmr. Swaziland)", "Ethiopia", "Fiji", "Finland", "France",
+                "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece",
+                "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
+                "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia",
+                "Iran", "Iraq", "Ireland", "palastiene", "Italy", "Jamaica",
+                "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait",
+                "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia",
+                "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+                "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta",
+                "Marshall Islands", "Mauritania", "Mauritius", "Mexico",
+                "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro",
+                "Morocco", "Mozambique", "Myanmar (Burma)", "Namibia", "Nauru",
+                "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger",
+                "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman",
+                "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay",
+                "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania",
+                "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia",
+                "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao
+                Tome and Principe", "Saudi Arabia", "Senegal", "Serbia",
+                "Seychelles", "Sierra Leone", "Singapore", "Slovakia",
+                "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South
+                Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan",
+                "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan",
+                "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
+                "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey",
+                "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab
+                Emirates", "United Kingdom", "United States of America",
+                "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela",
+                "Vietnam", "Yemen", "Zambia", "Zimbabwe" ] %> <%
+                countries.forEach(function(country) { %>
+                <option value="<%= country %>"><%= country %></option>
                 <% }); %>
               </select>
             </div>
@@ -174,14 +182,14 @@
             <button type="submit" class="btn btn-primary">
               Update changes
             </button>
-              <button
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                type="button"
-                class="btn btn-danger"
-              >
-                Delete Customer
-              </button>
+            <button
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              type="button"
+              class="btn btn-danger"
+            >
+              Delete Customer
+            </button>
           </div>
         </form>
       </section>
@@ -207,7 +215,9 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">Are you sure you want to continue delete the customer?</div>
+            <div class="modal-body">
+              Are you sure you want to continue delete the customer?
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -217,9 +227,7 @@
                 Close
               </button>
               <form action="/edit/<%= obj._id %>?_method=DELETE" method="post">
-                <button type="submit" class="btn btn-danger">
-                  Delete
-                </button>
+                <button type="submit" class="btn btn-danger">Delete</button>
               </form>
             </div>
           </div>

@@ -6,7 +6,7 @@
       rel="stylesheet"
       href="../bootstrap-icons-1.10.5/font/bootstrap-icons.min.css"
     />
-    <link rel="shortcut icon" href="../img/yousef.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/yousef.jpg" type="image/x-icon" />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,8 +20,7 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../css/dark-light.css">
-
+    <link rel="stylesheet" href="../css/dark-light.css" />
 
     <!-- Custom styles for this template -->
     <link href="../css/sidebars.css" rel="stylesheet" />
@@ -32,7 +31,6 @@
 
     <main class="d-flex flex-nowrap">
       <%- include('../Components/sidebar.ejs', {currentPage: "view"}) %>
-
 
       <section class="w-100">
         <%- include('../Components/navbar.ejs') %>
@@ -61,7 +59,7 @@
           <thead>
             <tr>
               <th scope="col">First Name</th>
-              <th class="fw-normal" scope="col"> <%= obj.fireName %></th>
+              <th class="fw-normal" scope="col"><%= obj.fireName %></th>
             </tr>
           </thead>
           <tbody>
@@ -97,12 +95,12 @@
 
             <tr>
               <th scope="row">Created on</th>
-              <td><%= moment(obj.createdAt ).format("MMM Do YY");   %>	  </td>
+              <td><%= moment(obj.createdAt ).format("MMM Do YY"); %></td>
             </tr>
 
             <tr>
               <th scope="row">Last Update</th>
-              <td><%= moment(obj.updatedAt ).format("MMM Do YY");   %>	  </td>
+              <td><%= moment(obj.updatedAt ).format("MMM Do YY"); %></td>
             </tr>
           </tbody>
         </table>

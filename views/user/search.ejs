@@ -6,7 +6,7 @@
       rel="stylesheet"
       href="../bootstrap-icons-1.10.5/font/bootstrap-icons.min.css"
     />
-    <link rel="shortcut icon" href="../img/ali.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/yousef.jpg" type="image/x-icon" />
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,8 +20,7 @@
 
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../css/dark-light.css">
-
+    <link rel="stylesheet" href="../css/dark-light.css" />
 
     <!-- Custom styles for this template -->
     <link href="../css/sidebars.css" rel="stylesheet" />
@@ -32,7 +31,6 @@
 
     <main class="d-flex flex-nowrap">
       <%- include('../Components/sidebar.ejs', {currentPage: "search"}) %>
-
 
       <section class="w-100">
         <%- include('../Components/navbar.ejs') %>
@@ -52,12 +50,10 @@
             </tr>
           </thead>
           <tbody>
-
-
-          <% arr.forEach( (item, index) => { %>
+            <% arr.forEach( (item, index) => { %>
             <tr>
-              <th scope="row"> <%= index+1 %></th>
-              <td> <%= item.fireName %>  <%= item.lastName %> </td>
+              <th scope="row"><%= index+1 %></th>
+              <td><%= item.fireName %> <%= item.lastName %></td>
               <td><%= item.gender %></td>
               <td><%= item.country %></td>
 
@@ -81,7 +77,7 @@
                   <i class="bi bi-pencil"></i>
                 </a>
                 <form
-                style="display: inline;"
+                  style="display: inline"
                   action="/edit/<%= item._id %>?_method=DELETE"
                   method="post"
                 >
@@ -96,12 +92,7 @@
                 </form>
               </td>
             </tr>
-          <% }) %>
-        
-        
-        
-        
-        
+            <% }) %>
           </tbody>
         </table>
       </section>
