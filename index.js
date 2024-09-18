@@ -11,6 +11,7 @@ const port = process.env.PORT || 3001;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+app.use(express.static("public"));
 
 // Explicitly set the views folder
 app.set("views", path.join(__dirname, "views"));
