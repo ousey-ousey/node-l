@@ -15,6 +15,7 @@ app.use(express.static("public"));
 
 // Explicitly set the views folder
 app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
