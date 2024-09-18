@@ -11,6 +11,10 @@ const port = process.env.PORT || 3001;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+
+// Explicitly set the views folder
+app.set("views", path.join(__dirname, "views"));
+
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(cors());
@@ -34,22 +38,6 @@ const connectDB = async () => {
 // Routes
 app.use(allRoutes);
 app.use("/user/add.html", addUserRoute);
-
-// Check if you're in a development environment to use livereload
-if (process.env.NODE_ENV === "development") {
-  const livereload = require("livereload");
-  const liveReloadServer = livereload.createServer();
-  liveReloadServer.watch(path.join(__dirname, "public"));
-
-  const connectLivereload = require("connect-livereload");
-  app.use(connectLivereload());
-
-  liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-      liveReloadServer.refresh("/");
-    }, 100);
-  });
-}
 
 // Start the server
 const startServer = async () => {
