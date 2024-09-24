@@ -9,7 +9,7 @@ const allRoutes = require("./routes/allRoutes");
 const addUserRoute = require("./routes/AddUser");
 require("dotenv").config();
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000; // Default Vercel port 3000
 const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(cookieParser());
