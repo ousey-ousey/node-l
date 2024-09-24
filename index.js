@@ -23,6 +23,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(methodOverride("_method"));
 app.use(cors());
+const fs = require("fs");
+
+console.log(fs.readdirSync(path.join(__dirname, "routes"))); // Log the content of the routes folder
+
+const allRoutes = require("../routes/allRoutes");
+const addUserRoute = require("../routes/AddUser");
 
 // MongoDB Connection
 let cachedDb = null; // Caching the DB connection

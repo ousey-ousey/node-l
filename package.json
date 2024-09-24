@@ -28,5 +28,12 @@
     "moment": "^2.30.1",
     "mongoose": "^7.4.0",
     "nodemon": "^3.0.1"
-  }
+  },
+  "files": [
+    "routes",
+    "controllers",
+    "middleware",
+    "public",
+    "views"
+  ]
 }
