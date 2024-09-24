@@ -3,10 +3,11 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
 const cors = require("cors");
-const allRoutes = require("../routes/allRoutes");
+const allRoutes = require("../routes/allRoutes"); // Declared once here
 const addUserRoute = require("../routes/AddUser");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
+const fs = require("fs");
 
 const app = express();
 app.use(express.json());
@@ -23,12 +24,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(methodOverride("_method"));
 app.use(cors());
-const fs = require("fs");
 
 console.log(fs.readdirSync(path.join(__dirname, "routes"))); // Log the content of the routes folder
-
-const allRoutes = require("../routes/allRoutes");
-const addUserRoute = require("../routes/AddUser");
 
 // MongoDB Connection
 let cachedDb = null; // Caching the DB connection
