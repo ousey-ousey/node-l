@@ -3,26 +3,14 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
 const cors = require("cors");
-const livereload = require("livereload");
-const connectLivereload = require("connect-livereload");
-const allRoutes = require("./routes/allRoutes");
-const addUserRoute = require("./routes/AddUser");
+const allRoutes = require("../routes/allRoutes");
+const addUserRoute = require("../routes/AddUser");
 require("dotenv").config();
-const app = express();
-const port = process.env.PORT || 3000; // Default Vercel port 3000
 const cookieParser = require("cookie-parser");
+
+const app = express();
 app.use(express.json());
 app.use(cookieParser());
-
-// Create a livereload server
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch([
-  path.join(__dirname, "public"),
-  path.join(__dirname, "views"),
-]);
-
-// Middleware to inject livereload script
-app.use(connectLivereload());
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -37,13 +25,20 @@ app.use(methodOverride("_method"));
 app.use(cors());
 
 // MongoDB Connection
+let cachedDb = null; // Caching the DB connection
+
 const connectDB = async () => {
+  if (cachedDb) {
+    return cachedDb;
+  }
   try {
-    await mongoose.connect(process.env.MONGO_URL, {
+    const db = await mongoose.connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("MongoDB connected successfully");
+    cachedDb = db;
+    return db;
   } catch (err) {
     console.error("MongoDB connection failed:", err);
   }
@@ -53,19 +48,8 @@ const connectDB = async () => {
 app.use(allRoutes);
 app.use("/user/add.html", addUserRoute);
 
-// Start the server
-const startServer = () => {
-  connectDB(); // Ensures MongoDB connection before starting the server
-  app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}/`);
-  });
+// Export the app as a Vercel function
+module.exports = async (req, res) => {
+  await connectDB(); // Ensure DB connection before handling requests
+  return app(req, res); // Handle the request using the Express app
 };
-
-// Notify browser of changes
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
-
-startServer();
